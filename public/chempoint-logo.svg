@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <!-- Metallic outer ring gradient -->
+    <linearGradient id="cpSilverRim" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#f8fafc" />
+      <stop offset="25%" stopColor="#e2e8f0" />
+      <stop offset="50%" stopColor="#cbd5e1" />
+      <stop offset="75%" stopColor="#94a3b8" />
+      <stop offset="100%" stopColor="#cbd5e1" />
+    </linearGradient>
+
+    <!-- Deep purple core gradient -->
+    <radialGradient id="cpPurpleCore" cx="45%" cy="40%" r="65%">
+      <stop offset="0%" stopColor="#9333ea" />
+      <stop offset="40%" stopColor="#7e22ce" />
+      <stop offset="75%" stopColor="#6b21a8" />
+      <stop offset="100%" stopColor="#4c1d95" />
+    </radialGradient>
+
+    <!-- Subtle drop shadow for badge -->
+    <filter id="cpBadgeShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#4c1d95" flood-opacity="0.25" />
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.15" />
+    </filter>
+
+    <!-- Paths for circular curved text -->
+    <!-- Top arc: left to right over the top -->
+    <path id="topArc" d="M 75,200 A 125,125 0 0,1 325,200" fill="none" />
+    <!-- Bottom arc: left to right under the bottom -->
+    <path id="bottomArc" d="M 68,205 A 132,132 0 0,0 332,205" fill="none" />
+  </defs>
+
+  <!-- Outer Drop Shadow Container -->
+  <g filter="url(#cpBadgeShadow)">
+    <!-- Base Outer Disc -->
+    <circle cx="200" cy="200" r="185" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2" />
+
+    <!-- Outer Metallic Silver Rim -->
+    <circle cx="200" cy="200" r="182" fill="url(#cpSilverRim)" stroke="#e2e8f0" stroke-width="3" />
+    <circle cx="200" cy="200" r="179" fill="none" stroke="#64748b" stroke-width="0.75" opacity="0.4" />
+    
+    <!-- Inner Rim Border -->
+    <circle cx="200" cy="200" r="126" fill="none" stroke="#94a3b8" stroke-width="2" />
+    <circle cx="200" cy="200" r="124" fill="none" stroke="#ffffff" stroke-width="1.5" />
+
+    <!-- Circular Top Text: A CHEMISTRY INSTITUTION -->
+    <text font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="14.5" font-weight="800" fill="#1e293b" letter-spacing="3.8">
+      <textPath href="#topArc" startOffset="50%" text-anchor="middle">
+        A CHEMISTRY INSTITUTION
+      </textPath>
+    </text>
+
+    <!-- Circular Bottom Text: CHEMPOINT -->
+    <text font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="29" font-weight="900" fill="#6b21a8" letter-spacing="4">
+      <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">
+        CHEMPOINT
+      </textPath>
+    </text>
+
+    <!-- Center Circle: Vibrant Royal Purple/Violet -->
+    <circle cx="200" cy="200" r="120" fill="url(#cpPurpleCore)" stroke="#ffffff" stroke-width="4" />
+    
+    <!-- Concentric Accent Rings inside Purple Disc -->
+    <circle cx="200" cy="200" r="113" fill="none" stroke="#a855f7" stroke-width="2.5" opacity="0.6" />
+    <circle cx="200" cy="200" r="108" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3" />
+
+    <!-- Official CP Stylized Monogram -->
+    <!-- White central CP emblem with clean geometric curves -->
+    <g transform="translate(200, 200)">
+      <!-- Outer rounded loop of the emblem -->
+      <path
+        d="M 0 -72 
+           C 40 -72, 72 -40, 72 0 
+           C 72 40, 40 72, 0 72 
+           C -40 72, -72 40, -72 0 
+           C -72 -40, -40 -72, 0 -72 Z"
+        fill="none"
+        stroke="#ffffff"
+        stroke-width="17"
+        stroke-linecap="round"
+      />
+      <!-- Central vertical bar representing the spine of P and center of C -->
+      <line x1="0" y1="-72" x2="0" y2="72" stroke="#ffffff" stroke-width="17" stroke-linecap="round" />
+      
+      <!-- Inner circular counter creating the CP aperture -->
+      <circle cx="0" cy="0" r="28" fill="url(#cpPurpleCore)" stroke="#ffffff" stroke-width="10" />
+      
+      <!-- Subtle highlight on CP monogram -->
+      <circle cx="-16" cy="-16" r="4" fill="#ffffff" opacity="0.8" />
+    </g>
+
+    <!-- Glass gloss reflection sweep on upper half -->
+    <path
+      d="M 85 170 
+         A 120 120 0 0 1 315 170 
+         Q 200 135 85 170 Z"
+      fill="#ffffff"
+      opacity="0.12"
+    />
+  </g>
+</svg>

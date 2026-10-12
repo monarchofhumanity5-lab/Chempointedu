@@ -1,0 +1,6 @@
+{
+  "name": "ChemPoint - A Chemistry Institution",
+  "description": "Official academic platform for ChemPoint, founded by Tapas Majumder (B.Sc, M.Sc in Chemistry, B.Ed). Classes 9-12 Chemistry, Complete Science & Mathematics for Classes 9-10, and B.Sc Chemistry Major & Minor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,279 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background-color: #faf9fe;
+    color: #090d16;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+  }
+  ::selection {
+    background-color: #7e22ce;
+    color: #ffffff;
+  }
+}
+
+/* =========================================================================
+   CHEMPOINT FLUID DESIGN SYSTEM & HIGH-END ATMOSPHERIC MOTION
+   ========================================================================= */
+
+@keyframes cp-aurora-1 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(50px, -40px, 0) scale(1.12) rotate(4deg);
+  }
+  66% {
+    transform: translate3d(-40px, 35px, 0) scale(0.92) rotate(-3deg);
+  }
+}
+
+@keyframes cp-aurora-2 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate3d(-45px, 45px, 0) scale(1.08) rotate(-4deg);
+  }
+  66% {
+    transform: translate3d(35px, -30px, 0) scale(0.94) rotate(3deg);
+  }
+}
+
+@keyframes cp-aurora-3 {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(30px, 25px, 0) scale(1.06);
+  }
+}
+
+@keyframes cp-float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+@keyframes cp-orbit {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes cp-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes cp-glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.4));
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 28px rgba(168, 85, 247, 0.75));
+  }
+}
+
+/* Utility Animations */
+.animate-cp-aurora-1 {
+  animation: cp-aurora-1 26s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cp-aurora-2 {
+  animation: cp-aurora-2 30s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cp-aurora-3 {
+  animation: cp-aurora-3 34s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cp-float {
+  animation: cp-float 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-cp-float-delayed {
+  animation: cp-float 7s ease-in-out 3.5s infinite;
+  will-change: transform;
+}
+
+.animate-cp-orbit-slow {
+  animation: cp-orbit 48s linear infinite;
+}
+
+.animate-cp-orbit-reverse {
+  animation: cp-orbit 36s linear infinite reverse;
+}
+
+.animate-cp-glow {
+  animation: cp-glow-pulse 4s ease-in-out infinite;
+}
+
+/* Interactive Glass & Card Surfaces */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.84);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 4px 20px -2px rgba(126, 34, 206, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+}
+
+.glass-panel-interactive {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(233, 213, 255, 0.6);
+  box-shadow: 0 8px 30px -4px rgba(126, 34, 206, 0.05), 0 2px 8px -2px rgba(15, 23, 42, 0.03);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+}
+
+.glass-panel-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(126, 34, 206, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.05);
+  border-color: rgba(168, 85, 247, 0.65);
+}
+
+.glass-panel-dark {
+  background: rgba(10, 15, 30, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px -5px rgba(126, 34, 206, 0.18);
+}
+
+/* Button & Tactile Physics System */
+.btn-tactile {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              opacity 0.2s ease;
+  will-change: transform;
+}
+
+.btn-tactile:hover {
+  transform: translateY(-1.5px);
+}
+
+.btn-tactile:active {
+  transform: translateY(0.5px) scale(0.985);
+}
+
+/* Primary ChemPoint Button with Light Sheen */
+.btn-primary-cp {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #7e22ce 0%, #6366f1 50%, #581c87 100%);
+  color: #ffffff;
+  box-shadow: 0 8px 24px -4px rgba(126, 34, 206, 0.38), 0 2px 6px -1px rgba(15, 23, 42, 0.12);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary-cp::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.75s ease;
+}
+
+.btn-primary-cp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px -4px rgba(126, 34, 206, 0.52), 0 4px 10px -2px rgba(15, 23, 42, 0.15);
+}
+
+.btn-primary-cp:hover::after {
+  left: 140%;
+}
+
+.btn-primary-cp:active {
+  transform: translateY(0.5px) scale(0.985);
+}
+
+/* Card Hover Elevation */
+.card-hover-effect {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.32s ease;
+  will-change: transform;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-3.5px);
+  box-shadow: 0 20px 35px -8px rgba(126, 34, 206, 0.09), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+  border-color: rgba(192, 132, 252, 0.7);
+}
+
+/* Modern Minimal Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-cp-aurora-1,
+  .animate-cp-aurora-2,
+  .animate-cp-aurora-3,
+  .animate-cp-float,
+  .animate-cp-float-delayed,
+  .animate-cp-orbit-slow,
+  .animate-cp-orbit-reverse,
+  .animate-cp-glow,
+  .card-hover-effect:hover,
+  .glass-panel-interactive:hover,
+  .btn-tactile:hover,
+  .btn-tactile:active,
+  .btn-primary-cp:hover,
+  .btn-primary-cp:active {
+    animation: none !important;
+    transform: none !important;
+  }
+}
