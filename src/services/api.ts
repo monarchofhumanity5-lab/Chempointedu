@@ -106,7 +106,10 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
   const contentType = response.headers.get('content-type') || '';
   const isHtml = contentType.toLowerCase().includes('text/html');
 
-  if (isHtml || response.status === 404) {
+  // On Vercel, non-existent API routes or unsupported methods return 405 Method Not Allowed,
+  // 404 Not Found, or an HTML index fallback. We treat all of these as API unavailable
+  // so execution falls back seamlessly to the direct Supabase datastore.
+  if (isHtml || response.status === 404 || response.status === 405 || response.status >= 500) {
     throw new Error(`API endpoint unavailable (HTTP ${response.status}).`);
   }
 
@@ -1503,6 +1506,38 @@ export const api = {
       return {
         message: `Course access ${action === 'enroll' ? 'granted' : 'revoked'} successfully.`,
         enrolled_course_ids: (currentEnrs || []).map((e: any) => e.course_id),
+      };
+    },
+    async updateBatch(
+      studentId: string,
+      batchName: string,
+      targetExam?: string
+    ): Promise<{ message: string; student: any }> {
+      try {
+        return await request(`/api/students/${studentId}/batch`, {
+          method: 'POST',
+          body: JSON.stringify({ batch_name: batchName, target_exam: targetExam }),
+        });
+      } catch (err: any) {
+        if (!err.message?.includes('unavailable') && !err.message?.includes('HTML')) {
+          throw err;
+        }
+      }
+
+      const updates: Record<string, any> = { batch_name: batchName };
+      if (targetExam) updates.target_exam = targetExam;
+
+      const { data: updated, error } = await supabase
+        .from('profiles')
+        .update(updates)
+        .eq('id', studentId)
+        .select()
+        .single();
+
+      if (error) throw new Error(error.message);
+      return {
+        message: 'Student batch allocation updated successfully.',
+        student: updated,
       };
     },
   },
