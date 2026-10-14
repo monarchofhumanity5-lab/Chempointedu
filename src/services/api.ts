@@ -494,6 +494,12 @@ export const api = {
       const lesList = lessons || [];
       const enrList = enrollments || [];
 
+      const userEnrolledCourseIds = new Set(
+        currentUser
+          ? enrList.filter((e: any) => e.user_id === currentUser.id).map((e: any) => e.course_id)
+          : []
+      );
+
       const enriched: Course[] = (rawCourses || []).map((course: any) => {
         const courseSubs = subList.filter((s: any) => s.course_id === course.id);
         const subIds = courseSubs.map((s: any) => s.id);
@@ -515,6 +521,7 @@ export const api = {
           lessons_count: courseLessons.length,
           enrolled_students_count: enrolledStudentsCount,
           progress_percentage: progressPercentage,
+          is_enrolled: userEnrolledCourseIds.has(course.id),
         };
       });
 
@@ -578,9 +585,13 @@ export const api = {
         });
       }
 
-      // Mark is_completed for lessons if user is authenticated
+      // Mark is_completed for lessons and is_enrolled for course if user is authenticated
       if (currentUser) {
-        const completedIds = await getCompletedLessonIds(currentUser.id);
+        const [completedIds, enrolledCourseIds] = await Promise.all([
+          getCompletedLessonIds(currentUser.id),
+          getEnrolledCourseIds(currentUser.id),
+        ]);
+        (course as any).is_enrolled = enrolledCourseIds.has(course.id);
         if (course.subjects) {
           course.subjects.forEach((subj: any) => {
             (subj.chapters || []).forEach((chap: any) => {

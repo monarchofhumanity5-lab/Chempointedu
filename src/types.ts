@@ -41,6 +41,7 @@ export interface Course {
   enrolled_students_count?: number;
   // Progress for student view
   progress_percentage?: number;
+  is_enrolled?: boolean;
 }
 
 export interface Subject {

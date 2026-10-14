@@ -456,8 +456,12 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({
                 <Sparkles className="w-3.5 h-3.5 text-purple-300" />
                 <span>Mentor: Tapas Majumder (M.Sc, B.Ed)</span>
               </div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 backdrop-blur-md text-xs font-semibold text-emerald-200 border border-emerald-400/30">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
+                <span>Admission Status: Enrolled & Verified</span>
+              </div>
               <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-indigo-500/20 text-xs font-medium text-indigo-200 border border-indigo-400/20">
-                <span>Roll: {user?.roll_number || 'CP-STU-01'}</span>
+                <span>Roll: {user?.roll_number || 'CP-STU-PENDING'}</span>
               </div>
             </div>
 
